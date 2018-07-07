@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux/Aux';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -64,7 +64,6 @@ class BurgerBuilder extends Component {
       }).reduce((sum, el) => {
         return sum + el;
       }, 0);
-      console.log('sum: ', sum);
       return {
         purchasable: sum > 0
       }
@@ -87,7 +86,6 @@ class BurgerBuilder extends Component {
     const disabledInfo = {
       ...this.state.ingredients
     }
-    console.log('disabledInfo: ', disabledInfo);
     
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
