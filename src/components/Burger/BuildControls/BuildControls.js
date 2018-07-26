@@ -27,7 +27,12 @@ const  buildControls = (props) => (
       onClick={props.ordered}>
       COMMANDER
     </button>
-
+    <button 
+      className={classes.OrderButton}
+      onClick={props.next}>
+      NEXT
+    </button>
+ 
   </div>
 )
 

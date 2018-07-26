@@ -1,0 +1,41 @@
+.Return {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: -15px;
+  left: 10px;
+}
+
+.Return div:first-child {
+  width: 18px;
+  height: 3px;
+  background-color: #000;
+  transform: rotate(-45deg);
+  position: absolute;
+  left: 0;
+  top: 16px;
+  border-radius: 5px;
+}
+
+.Return div:nth-child(2) {
+  width: 18px;
+  height: 3px;
+  background-color: #000;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 0;
+  top: 28px;
+  border-radius: 5px;
+}
+
+.Return div:nth-child(3) {
+  width: 33px;
+  height: 3px;
+  background-color: #000;
+  position: absolute;
+  left: 3px;
+  top: 22px;
+  border-radius: 5px;
+}

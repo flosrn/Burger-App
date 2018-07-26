@@ -17,7 +17,13 @@ const burger = (props) => {
   }
   
   return (
-    <div className={classes.Burger}>
+    <div 
+      className={classes.Burger} 
+      style={{
+        width: props.show ? '100px' : null,
+        height: props.show ? '100px' : null,
+        overflow: props.show ? 'hidden' : null 
+      }}>
       <BurgerIngredient type="bread-top" />
       {transformedIngredients}
       <BurgerIngredient type="bread-bottom" />

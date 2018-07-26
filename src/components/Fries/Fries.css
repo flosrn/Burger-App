@@ -1,0 +1,48 @@
+.FriesContainer {
+  height: 30%;
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.FriesContainer img:first-child {
+  width: 80px;
+}
+
+.FriesContainer img:nth-child(2) {
+  width: 120px;
+}
+
+.FriesContainer img:nth-child(3) {
+  width: 110px;
+}
+
+.FriesContainer > div:hover {
+  border: 1px solid #000;
+}
+
+.FriesContainer div:active {
+  transform: scale(1.5);
+}
+
+@media (min-width: 700px) {
+  .FriesContainer {
+    height: 40%;
+  }
+
+  .FriesContainer img:first-child {
+    width: 200px;
+    padding: 20px
+  }
+
+  .FriesContainer img:nth-child(2) {
+    width: 240px;
+    padding: 20px
+  }
+
+  .FriesContainer img:nth-child(3) {
+    width: 230px;
+    padding: 20px
+  }
+}

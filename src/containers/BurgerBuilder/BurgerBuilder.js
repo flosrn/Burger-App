@@ -5,6 +5,7 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Others from '../Others/Others';
 
 
 const INGREDIENT_PRICES = {
@@ -12,6 +13,12 @@ const INGREDIENT_PRICES = {
   cheese: 0.6,
   bacon: 1,
   meat: 2,
+}
+
+const OTHERS_MEAL_PRICE = {
+  fries: 3,
+  potatoes: 3,
+  nuggets: 4
 }
 
 class BurgerBuilder extends Component {
@@ -23,9 +30,16 @@ class BurgerBuilder extends Component {
       cheese: 2,
       meat: 2
     },
+    fries: {
+      fries: 0,
+      potatoes: 0,
+      nuggets: 0
+    },
     totalPrice: 7.5,
     purchasable: false,
-    purchasing: false
+    purchasing: false,
+    index: 1,
+    showSummary: false
   }
   
 
@@ -56,6 +70,17 @@ class BurgerBuilder extends Component {
     this.updatePurchaseState();
   }
 
+  addOthersMealHandler = (type) => {
+    this.setState((prevState) => {
+      const updatedFries = {...prevState.fries};
+      updatedFries[type] += 1;
+      return {
+        fries: updatedFries,
+        totalPrice: prevState.totalPrice + OTHERS_MEAL_PRICE[type]
+      }
+    })
+  }
+
   updatePurchaseState() {
     this.setState((prevState) => {
       const ingredients = {...prevState.ingredients}
@@ -81,6 +106,30 @@ class BurgerBuilder extends Component {
   purchaseContinueHandler = () => {
     alert('you continue');
   }
+
+  showSummaryHandler = () => {
+    this.setState({showSummary: true});
+  }
+
+  hideSummaryHandler = () => {
+    this.setState({showSummary: false});
+  }
+
+  next = () => {
+    this.setState(prevState => {
+      return {
+        index: prevState.index + 1
+      };
+    });
+  }
+
+  back = () => {
+    this.setState(prevState => {
+      return {
+        index: prevState.index - 1
+      };
+    });
+  }
   
   render () {
     const disabledInfo = {
@@ -89,6 +138,12 @@ class BurgerBuilder extends Component {
     
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
+    }
+
+    let pos = null;
+
+    if (this.state.index >= 2) {
+      pos = { right: "0px" };
     }
 
     return (
@@ -107,7 +162,18 @@ class BurgerBuilder extends Component {
           disabled={disabledInfo}
           price={this.state.totalPrice} 
           purchasable={this.state.purchasable} 
-          ordered={this.purchaseHandler} />
+          ordered={this.purchaseHandler} 
+          next={this.next} />
+          <Others 
+            fries={this.state.fries}
+            ingredients={this.state.ingredients}
+            showSummary={this.showSummaryHandler} 
+            hideSummary={this.hideSummaryHandler}
+            price={this.state.totalPrice}
+            othersMealAdded={this.addOthersMealHandler}
+            position={pos} 
+            back={this.back}
+            show={this.state.showSummary} />
       </Aux>
     )
   }

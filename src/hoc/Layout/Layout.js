@@ -25,7 +25,7 @@ class Layout extends Component {
 
   render () {
     return (
-      <Aux>
+      <Aux className={classes.Aux} style={this.props.position}>
         <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler}/>
         <SideDrawer showSideDrawer={this.state.showSideDrawer} closed={this.sideDrawerCloseHandler} />
         <main className={classes.Content}>
