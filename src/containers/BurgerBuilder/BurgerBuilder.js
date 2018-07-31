@@ -39,7 +39,14 @@ class BurgerBuilder extends Component {
     purchasable: false,
     purchasing: false,
     index: 1,
-    showSummary: false
+    showSummary: false,
+    littleBurger: true,
+    bannerShow: false
+  }
+
+  constructor(props) {
+    super(props);
+    this.banner = React.createRef();
   }
   
 
@@ -112,7 +119,16 @@ class BurgerBuilder extends Component {
   }
 
   hideSummaryHandler = () => {
+    console.log(this.state.index);
     this.setState({showSummary: false});
+    // console.log(this.banner.current.clientHeight);
+    if(this.state.index > 1) {
+      console.log(this.banner.current.clientHeight);
+      // if(this.banner.current.clientHeight < 100) {
+      //   this.setState({littleBurger: false});
+      //   console.log('test');
+      // }
+    }
   }
 
   next = () => {
@@ -146,6 +162,8 @@ class BurgerBuilder extends Component {
       pos = { right: "0px" };
     }
 
+    
+
     return (
       <Aux>
         <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
@@ -173,9 +191,12 @@ class BurgerBuilder extends Component {
             othersMealAdded={this.addOthersMealHandler}
             position={pos} 
             back={this.back}
-            show={this.state.showSummary} />
+            show={this.state.showSummary} 
+            burger={this.state.littleBurger}
+            refBanner={this.banner}
+            index={this.state.index}/>
       </Aux>
-    )
+    ) 
   }
 }
 
